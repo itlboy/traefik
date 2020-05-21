@@ -11,7 +11,6 @@ services:
       - "--providers.docker=true"
       - "--providers.docker.exposedbydefault=false"
       - "--entrypoints.web.address=:80"
-      admin:$apr1$qmtogpy1$vivO9AP/jTd9MMDEqvk/L.
     ports:
       - "80:80"
       - "8080:8080"
