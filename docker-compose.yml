@@ -17,13 +17,11 @@ services:
     volumes:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     labels:
-      - "traefik.http.middlewares.test-auth.basicauth.users=test:admin:$$apr1$$qmtogpy1$$vivO9AP/jTd9MMDEqvk/L."
-      traefik.enable: true
-      traefik.frontend.rule: "Host:traefik.yourdomain.com"
-      # get md5 from htpasswd or http://www.htaccesstools.com/htpasswd-generator/
-      # and then double all $ to $$ to avoid docker-compose 
-      traefik.frontend.auth.basic: "admin:$$apr1$$qmtogpy1$$vivO9AP/jTd9MMDEqvk/L."
-      traefik.port: 8080
+      #- "traefik.http.routers.api.rule=Host(`traefik.example.com`)"
+      - "traefik.http.routers.api.service=api@internal"
+      - "traefik.http.routers.api.middlewares=auth"
+      - "traefik.http.middlewares.auth.basicauth.users=admin:$$apr1$$qmtogpy1$$vivO9AP/jTd9MMDEqvk/L."
+      - "traefik.port=8080"
     logging:
       options:
         max-size: 5M 
