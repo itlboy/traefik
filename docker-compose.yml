@@ -20,7 +20,7 @@ services:
       options:
         max-size: 5M 
     networks:
-        - public-http
+        - web
         
 networks:
   web:
